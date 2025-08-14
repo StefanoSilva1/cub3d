@@ -1,0 +1,9 @@
+//1 = parede
+//0 = chão
+//N,S,E,W = posição do personagem 
+
+111111
+100101
+101001
+1100N1
+111111
