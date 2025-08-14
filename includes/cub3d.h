@@ -1,6 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+/* Headers */
 # include <unistd.h>
 # include <stdio.h>
 # include <stdbool.h>
@@ -13,6 +14,10 @@
 
 # include "libft.h"
 
+# define WIDTH 1000
+# define HEIGHT 1000
+
+/* Structs */
 typedef struct s_img
 {
 	void	*img_ptr;
@@ -29,5 +34,7 @@ typedef struct s_cub
 	void	*mlx_window;
 	t_img	img;
 }				t_cub;	
+
+void	cub_init(t_cub *cub);
 
 #endif
