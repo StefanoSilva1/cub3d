@@ -15,6 +15,20 @@ static void	err_exit(t_cub *cub)
 	exit(EXIT_FAILURE);
 }
 
+static void	events_init(t_cub *cub)
+{
+	mlx_hook(cub->mlx_window,
+		KeyPress,
+		KeyPressMask,
+		key_handler,
+		cub);
+	mlx_hook(cub->mlx_window,
+		DestroyNotify,
+		StructureNotifyMask,
+		close_handler,
+		cub);
+}
+
 void	cub_init(t_cub *cub)
 {
 	cub->mlx_connection = mlx_init();
@@ -33,4 +47,5 @@ void	cub_init(t_cub *cub)
 	&cub->img.endian);
 	if (!cub->img.pxl_ptr)
 		err_exit(cub);
+	events_init(cub);
 }
