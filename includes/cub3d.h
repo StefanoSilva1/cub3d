@@ -36,5 +36,6 @@ typedef struct s_cub
 }				t_cub;	
 
 void	cub_init(t_cub *cub);
-
+int		close_handler(t_cub *cub);
+int		key_handler(int keysym, t_cub *cub);
 #endif
