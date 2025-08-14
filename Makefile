@@ -1,33 +1,34 @@
 # Program
 NAME = cub3D
 
-# Compiler
+# Compiler and Flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 -Iincludes -ILibft
+CFLAGS = -Wall -Wextra -Werror -g3 -Iincludes -ILibft -I$(MLX_DIR)
 
 # Directories
-LIBFT = Libft/libft.a
-SRC_DIR = src/
-OBJ_DIR = objs/
-
-# Find all .c files
-SRCS = $(shell find $(SRC_DIR) -type f -name "*.c")
-
-OBJS = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))
+SRC_DIR = src
+OBJ_DIR = objs
+LIBFT_DIR = Libft
+MLX_DIR = minilibx-linux
 
 # Libraries
-LIBS = -lreadline
+LIBFT = $(LIBFT_DIR)/libft.a
+MLX = $(MLX_DIR)/libmlx.a
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
+EXTRA_LIBS = -lreadline
 
+# Sources and Objects
+SRCS = $(shell find $(SRC_DIR) -type f -name "*.c")
+OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
+
+# Default target
 all: $(NAME)
 
-fd: all
-	valgrind --track-fds=yes --suppressions=suppfile.sup ./$(NAME)
-
 v: all
-	valgrind -q --leak-check=full --show-leak-kinds=all --suppressions=suppfile.sup ./$(NAME)
+	valgrind -q --leak-check=full --show-leak-kinds=all./$(NAME)
 
 val: all
-	@/bin/valgrind -q --suppressions=suppfile.sup \
+	@/bin/valgrind -q \
 				--leak-check=full \
 				--show-leak-kinds=all \
 				--track-origins=yes \
@@ -36,23 +37,31 @@ val: all
 				--trace-children-skip='*/bin/*,*/sbin/*,/usr/bin/*' \
 				./${NAME}
 
-$(LIBFT):
-	make -C ./Libft
+# Link final binary
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBFT) $(MLX_FLAGS) $(EXTRA_LIBS)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+# Compile C files into .o files
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) -o ./$(NAME) $(OBJS) $(LIBFT) $(LIBS)
+# Build libft and minilibx
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
 
+$(MLX):
+	$(MAKE) -C $(MLX_DIR)
+
+# Clean
 clean:
 	$(RM) -r $(OBJ_DIR)
-	make clean -C ./Libft
+	$(MAKE) clean -C $(LIBFT_DIR)
+	$(MAKE) clean -C $(MLX_DIR)
 
 fclean: clean
-	$(RM) ./$(NAME)
-	make fclean -C ./Libft
+	$(RM) $(NAME)
+	$(MAKE) fclean -C $(LIBFT_DIR)
 
 re: fclean all
 
