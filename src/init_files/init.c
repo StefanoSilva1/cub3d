@@ -14,3 +14,23 @@ static void	err_exit(t_cub *cub)
 	}
 	exit(EXIT_FAILURE);
 }
+
+void	cub_init(t_cub *cub)
+{
+	cub->mlx_connection = mlx_init();
+	if (!cub->mlx_connection)
+		err_exit(cub);
+	cub->mlx_window = mlx_new_window(cub->mlx_connection, \
+		WIDTH, HEIGHT, "cub3D");
+	if (!cub->mlx_window)
+		err_exit(cub);
+	cub->img.img_ptr = mlx_new_image(cub->mlx_connection, WIDTH, HEIGHT);
+	if (!cub->img.img_ptr)
+		err_exit(cub);
+	cub->img.pxl_ptr = mlx_get_data_addr(cub->img.img_ptr, \
+	&cub->img.bits_per_pxl, \
+	&cub->img.l_len, \
+	&cub->img.endian);
+	if (!cub->img.pxl_ptr)
+		err_exit(cub);
+}
