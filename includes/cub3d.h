@@ -29,11 +29,19 @@ typedef struct s_img
 
 typedef struct s_cub
 {
-	char	*name;
-	void	*mlx_connection;
-	void	*mlx_window;
-	t_img	img;
-}				t_cub;	
+	char		*name;
+	void		*mlx_connection;
+	void		*mlx_window;
+	t_img		img;
+	t_pen_pos	position;
+	char		**map;
+}				t_cub;
+
+typedef struct s_pen_pos
+{
+	int	x;
+	int	y;
+}				t_pen_pos;
 
 void	cub_init(t_cub *cub);
 int		close_handler(t_cub *cub);
