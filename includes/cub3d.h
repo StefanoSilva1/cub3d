@@ -52,6 +52,8 @@ typedef struct s_player
 
 typedef struct s_ray
 {
+	bool	hit;
+	int		side;
 	int		map_y;
 	int		map_x;
 	int		step_y;
