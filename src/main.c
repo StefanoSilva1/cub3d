@@ -12,6 +12,7 @@ int	main(int c, char **v)
 		cub.sprite.ceilling_color = create_rgb(0, 135, 206, 235);
 		cub.sprite.floor_color = create_rgb(0, 128, 200, 128);
 		//---------------------------------------------------//
+		init_player(&cub);
 		cub_init(&cub);
 		mlx_loop_hook(cub.mlx_connection, render, &cub); //chama a funcao e fica re-desenhando as iteracoes
 		mlx_loop(cub.mlx_connection); //inicia a renderizacao
