@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdavi-al <sdavi-al@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/20 11:12:14 by sdavi-al          #+#    #+#             */
+/*   Updated: 2025/08/20 11:43:03 by sdavi-al         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -29,7 +41,15 @@ typedef struct s_img
 
 typedef struct s_cub
 {
-	char	*name;
+	char	*no_path;
+	char	*so_path;
+	char	*we_path;
+	char	*ea_path;
+	int		floor_rgb;
+	int		ceiling_rgb;
+	char	**map;
+	int		map_width;
+	int		map_height;
 	void	*mlx_connection;
 	void	*mlx_window;
 	t_img	img;

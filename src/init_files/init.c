@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdavi-al <sdavi-al@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/20 11:25:48 by sdavi-al          #+#    #+#             */
+/*   Updated: 2025/08/20 11:25:50 by sdavi-al         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	err_exit(t_cub *cub)
 {
-	ft_putstr_fd("ERROR: filed to init MLX", STDERR_FILENO);
+	ft_putstr_fd("ERROR: failed to init MLX", STDERR_FILENO);
 	if (cub->img.img_ptr)
 		mlx_destroy_image(cub->mlx_connection, cub->img.img_ptr);
 	if (cub->mlx_window)
