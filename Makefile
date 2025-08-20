@@ -15,7 +15,6 @@ MLX_DIR = minilibx-linux
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
-EXTRA_LIBS = -lreadline
 
 # Sources and Objects
 SRCS = $(shell find $(SRC_DIR) -type f -name "*.c")
@@ -39,7 +38,7 @@ val: all
 
 # Link final binary
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBFT) $(MLX_FLAGS) $(EXTRA_LIBS)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBFT) $(MLX_FLAGS)
 
 # Compile C files into .o files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
