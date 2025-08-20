@@ -1,47 +1,27 @@
 #include "cub3d.h"
 
-static void	set_NO_or_SO_dir(t_cub *cub, char direction)
+static void	set_player_direction(t_cub *cub, char direction)
 {
 	if (direction == 'N')
 	{
 		cub->player.dir_y = -1;
-		cub->player.dir_x = 0;
-		cub->player.plane_y = 0;
 		cub->player.plane_x = 0.66;
 	}
-	else if (direction == 'S')
+	else if(direction == 'S')
 	{
 		cub->player.dir_y = 1;
-		cub->player.dir_x = 0;
-		cub->player.plane_y = 0;
 		cub->player.plane_x = -0.66;
 	}
-}
-
-static void	set_ES_or_WE_dir(t_cub *cub, char direction)
-{
-	if (direction == 'E')
+	else if (direction == 'E')
 	{
-		cub->player.dir_y = 0;
 		cub->player.dir_x = 1;
 		cub->player.plane_y = 0.66;
-		cub->player.plane_x = 0;
 	}
 	else if (direction == 'W')
 	{
-		cub->player.dir_y = 0;
 		cub->player.dir_x = -1;
 		cub->player.plane_y = -0.66;
-		cub->player.plane_x = 0;	
 	}
-}
-
-static void	set_player_direction(t_cub *cub, char direction)
-{
-	if (direction == 'N' || direction == 'S')
-		set_NO_or_SO_dir(cub, direction);
-	else if (direction == 'E' || direction == 'W')
-		set_ES_or_WE_dir(cub, direction);
 }
 
 void	init_player(t_cub *cub)
