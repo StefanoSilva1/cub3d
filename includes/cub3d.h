@@ -76,4 +76,6 @@ int		create_rgb(int t, int r, int g, int b);
 void	draw_background(t_cub *cub);
 int		render(t_cub *cub);
 
+void	init_player(t_cub *cub);
+
 #endif
