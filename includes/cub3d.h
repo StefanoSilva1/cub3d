@@ -50,6 +50,19 @@ typedef struct s_player
 	double	pos_x;
 }				t_player;
 
+typedef struct s_ray
+{
+	int		map_y;
+	int		map_x;
+	int		step_y;
+	int		step_x;
+	double	delta_dst_y;
+	double	delta_dst_x;
+	double	side_dst_y;
+	double	side_dst_x;
+}				t_ray;
+
+
 typedef struct s_cub
 {
 	char			*name;
