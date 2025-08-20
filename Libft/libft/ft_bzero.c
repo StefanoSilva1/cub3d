@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdavi-al <sdavi-al@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/20 10:59:25 by sdavi-al          #+#    #+#             */
-/*   Updated: 2025/08/20 14:04:39 by sdavi-al         ###   ########.fr       */
+/*   Created: 2024/10/15 13:14:40 by sdavi-al          #+#    #+#             */
+/*   Updated: 2024/10/31 12:49:36 by sdavi-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_bzero(void *ptr, size_t n)
 {
-	t_cub	cub;
+	unsigned char	*cptr;
 
-	ft_bzero(&cub, sizeof(cub));
-	if (argc != 2 || !valid_format(argv[1]))
-		error_handler(&cub, "Error: Invalid arguments\nUsage: ./cub3D map.cub\n");
-	cub_init(&cub);
-	mlx_put_image_to_window(cub.mlx_connection, cub.mlx_window, cub.img.img_ptr, 0, 0);
-	mlx_loop(cub.mlx_connection);
-	return (0);
+	cptr = (unsigned char *)ptr;
+	while (n--)
+		*cptr++ = 0;
 }

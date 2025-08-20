@@ -6,7 +6,7 @@
 /*   By: sdavi-al <sdavi-al@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:51:36 by sdavi-al          #+#    #+#             */
-/*   Updated: 2025/08/20 11:52:08 by sdavi-al         ###   ########.fr       */
+/*   Updated: 2025/08/20 13:54:33 by sdavi-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	free_map(char **map, int height)
 	free(map);
 }
 
-int	close_handler(t_cub *cub)
-{	
+void	cleanup(t_cub *cub)
+{
 	if (cub->img.img_ptr)
 		mlx_destroy_image(cub->mlx_connection, cub->img.img_ptr);
 	if (cub->mlx_window)
@@ -38,5 +38,19 @@ int	close_handler(t_cub *cub)
 		mlx_destroy_display(cub->mlx_connection);
 		free(cub->mlx_connection);
 	}
+	if (cub->map)
+		free_map(cub->map, cub->map_height);
+}
+
+int	error_handler(t_cub *cub, char *error_message)
+{	
+	write(2, error_message, ft_strlen(error_message));
+	cleanup(cub);
+	exit(EXIT_FAILURE);
+}
+
+int	close_handler(t_cub *cub)
+{	
+	cleanup(cub);
 	exit(EXIT_SUCCESS);
 }

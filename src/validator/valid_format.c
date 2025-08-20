@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   valid_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdavi-al <sdavi-al@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/20 10:59:25 by sdavi-al          #+#    #+#             */
-/*   Updated: 2025/08/20 14:04:39 by sdavi-al         ###   ########.fr       */
+/*   Created: 2025/08/20 12:03:34 by sdavi-al          #+#    #+#             */
+/*   Updated: 2025/08/20 13:27:05 by sdavi-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
-{
-	t_cub	cub;
+int	valid_format(char *str)
 
-	ft_bzero(&cub, sizeof(cub));
-	if (argc != 2 || !valid_format(argv[1]))
-		error_handler(&cub, "Error: Invalid arguments\nUsage: ./cub3D map.cub\n");
-	cub_init(&cub);
-	mlx_put_image_to_window(cub.mlx_connection, cub.mlx_window, cub.img.img_ptr, 0, 0);
-	mlx_loop(cub.mlx_connection);
+{
+	int	len;
+
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	if (len > 4 && str[len - 4] == '.' && str[len - 3] == 'c' \
+	&& str[len - 2] == 'u' && str[len - 1] == 'b')
+		return (1);
 	return (0);
 }

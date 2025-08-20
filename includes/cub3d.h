@@ -6,7 +6,7 @@
 /*   By: sdavi-al <sdavi-al@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:12:14 by sdavi-al          #+#    #+#             */
-/*   Updated: 2025/08/20 11:43:03 by sdavi-al         ###   ########.fr       */
+/*   Updated: 2025/08/20 13:58:11 by sdavi-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,10 @@ typedef struct s_cub
 
 void	cub_init(t_cub *cub);
 int		close_handler(t_cub *cub);
+int		error_handler(t_cub *cub, char *error_message);
+void	cleanup(t_cub *cub);
 int		key_handler(int keysym, t_cub *cub);
+void	free_map(char **map, int height);
+int		valid_format(char *str);
+
 #endif
