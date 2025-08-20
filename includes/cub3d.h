@@ -27,6 +27,16 @@ typedef struct s_img
 	int		l_len;
 }				t_img;
 
+typedef struct s_map
+{
+	char	*no_path;
+	char	*so_path;
+	char	*we_path;
+	char	*ea_path;
+	int		map_width;
+	int		map_height;
+}				t_map;
+
 typedef struct s_pen_pos
 {
 	int	x;
@@ -53,6 +63,8 @@ typedef struct s_cub
 
 void	cub_init(t_cub *cub);
 int		close_handler(t_cub *cub);
+int		error_handler(t_cub *cub, char *error_message);
+void	cleanup(t_cub *cub);
 int		key_handler(int keysym, t_cub *cub);
 
 void	put_pxl_in_img(t_img *img, int x, int y, int color);
@@ -64,5 +76,7 @@ void	free_hard_map(char **map);
 int		create_rgb(int t, int r, int g, int b);
 void	draw_background(t_cub *cub);
 int		render(t_cub *cub);
+void	free_map(char **map);
+int		valid_format(char *str);
 
 #endif
