@@ -42,12 +42,12 @@ typedef struct s_sprite_img
 
 typedef struct s_player
 {
-	int	dir_y;
-	int	dir_x;
-	int	plane_y;
-	int	plane_x;
-	int	pos_y;
-	int	pos_x;
+	double	dir_y;
+	double	dir_x;
+	double	plane_y;
+	double	plane_x;
+	double	pos_y;
+	double	pos_x;
 }				t_player;
 
 typedef struct s_cub
