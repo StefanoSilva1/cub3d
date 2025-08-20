@@ -3,14 +3,10 @@
 #define COLOR_BROWN 0x654321
 #define COLOR_GREEN 0x008000
 
-void	put_pxl_in_img(t_img *img, t_cub *cub, int color)
+void	put_pxl_in_img(t_img *img, int x, int y, int color)
 {
-	int		y;
-	int		x;
 	char	*pxl_address;
 
-	y = cub->axys.y;
-	x = cub->axys.x;
 	pxl_address = img->pxl_ptr + (y * img->l_len + x * (img->bits_per_pxl /8));
 	*(unsigned int *)pxl_address = color;
 }
@@ -33,7 +29,7 @@ void   mk_tree(t_cub *cub)
         cub->axys.x = tree_start_x;
         while (cub->axys.x < tree_end_x)
         {
-            put_pxl_in_img(&cub->img, cub, COLOR_GREEN);
+            put_pxl_in_img(&cub->img, cub->axys.x, cub->axys.x, COLOR_GREEN);
             cub->axys.x++;
         }
         cub->axys.y++;
@@ -44,14 +40,14 @@ void   mk_tree(t_cub *cub)
         cub->axys.x = trunk_start_x;
         while (cub->axys.x < trunk_end_x)
         {
-            put_pxl_in_img(&cub->img, cub, COLOR_BROWN);
+            put_pxl_in_img(&cub->img, cub->axys.x, cub->axys.x, COLOR_BROWN);
             cub->axys.x++;
         }
         cub->axys.y++;
     }
 }
 
-int	render(t_cub *cub)
+int	render_frame_tree(t_cub *cub)
 {
 	cub->axys.y = 0;
 	while (cub->axys.y < HEIGHT / 2)
@@ -59,7 +55,7 @@ int	render(t_cub *cub)
 		cub->axys.x = 0;
 		while (cub->axys.x < WIDTH)
 		{
-			put_pxl_in_img(&cub->img, cub, 0x87CEEB);
+			put_pxl_in_img(&cub->img, cub->axys.x, cub->axys.x, 0x87CEEB);
 			cub->axys.x++;
 		}
 		cub->axys.y++;
@@ -70,7 +66,7 @@ int	render(t_cub *cub)
 		cub->axys.x = 0;
 		while (cub->axys.x < WIDTH)
 		{
-			put_pxl_in_img(&cub->img, cub, 0x964B00);
+			put_pxl_in_img(&cub->img, cub->axys.x, cub->axys.x, 0x964B00);
 			cub->axys.x++;
 		}
 		cub->axys.y++;
@@ -80,4 +76,4 @@ int	render(t_cub *cub)
 	return (0);
 }
 
-//mlx_loop_hook(cub.mlx_connection, render, &cub);
+//mlx_loop_hook(cub.mlx_connection, render_frame_tree, &cub);
