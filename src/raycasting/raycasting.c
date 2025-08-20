@@ -28,8 +28,14 @@ static void	init_ray(t_cub *cub, t_ray *ray, double ray_dir_y, double ray_dir_x)
 {
 	ray->map_y = (int)cub->player.pos_y;
 	ray->map_x = (int)cub->player.pos_x;
-	ray->delta_dst_y = fabs(1 / ray_dir_y);
-	ray->delta_dst_x = fabs(1 / ray_dir_x);
+	if (ray_dir_x == 0)
+		ray->delta_dst_x = 1e30;
+	else
+		ray->delta_dst_x = fabs(1 / ray_dir_x);
+	if (ray_dir_y == 0)
+		ray->delta_dst_y = 1e30;
+	else
+		ray->delta_dst_y = fabs(1 / ray_dir_y);
 }
 
 t_ray	digital_differential_analizer(t_cub *cub, double ray_dir_y, double ray_dir_x)
