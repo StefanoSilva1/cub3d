@@ -55,12 +55,13 @@ void	cub_init(t_cub *cub);
 int		close_handler(t_cub *cub);
 int		key_handler(int keysym, t_cub *cub);
 
-void	put_pxl_in_img(t_img *img, t_cub *cub, int color);
+void	put_pxl_in_img(t_img *img, int x, int y, int color);
 int		render(t_cub *cub);
 
 char	**create_hard_map(void);
 void	free_hard_map(char **map);
 
 int		create_rgb(int t, int r, int g, int b);
+void	draw_background(t_cub *cub);
 
 #endif
