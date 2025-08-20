@@ -40,6 +40,16 @@ typedef struct s_sprite_img
 	int	wall_color;
 }				t_sprite_img;
 
+typedef struct s_player
+{
+	int	dir_y;
+	int	dir_x;
+	int	plane_y;
+	int	plane_x;
+	int	pos_y;
+	int	pos_x;
+}				t_player;
+
 typedef struct s_cub
 {
 	char			*name;
@@ -48,6 +58,7 @@ typedef struct s_cub
 	t_img			img;
 	t_pen_pos		axys;
 	t_sprite_img	sprite;
+	t_player		player;
 	char			**map;
 }				t_cub;
 
