@@ -18,4 +18,19 @@ static t_wall	calculate_wall_dimension(t_ray *ray_result)
 	return (wall);
 }
 
+void	draw_wall(t_cub *cub, int horizontal_slice, t_ray *ray_result)
+{
+	t_wall	wall;
+	int		vertical_slice;
 
+	wall = calculate_wall_dimension(ray_result);
+	vertical_slice = wall.draw_start;
+	while (vertical_slice < wall.draw_end)
+	{
+		if (ray_result->side == 1) //horizontal wall
+			put_pxl_in_img(&cub->img, horizontal_slice, vertical_slice, create_rgb(0, 0, 176, 16));
+		else //vertical wall
+			put_pxl_in_img(&cub->img, horizontal_slice, vertical_slice, create_rgb(0, 0, 255, 0));
+		vertical_slice++;
+	}
+}
