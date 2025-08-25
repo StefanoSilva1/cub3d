@@ -76,4 +76,5 @@ void	raycasting(t_cub *cub, int x)
 	ray_dir_x = cub->player.dir_x + cub->player.plane_x * camera_x;
 	ray_dir_y = cub->player.dir_y + cub->player.plane_y * camera_x;
 	ray_result = digital_differential_analizer(cub, ray_dir_y, ray_dir_x);
+	draw_wall(cub, x, &ray_result);
 }
