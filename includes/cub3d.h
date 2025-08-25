@@ -40,6 +40,14 @@ typedef struct s_sprite_img
 	int	wall_color;
 }				t_sprite_img;
 
+typedef struct s_wall
+{
+	double	wall_dist;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}				t_wall;
+
 typedef struct s_player
 {
 	double	dir_y;
