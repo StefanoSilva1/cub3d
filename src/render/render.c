@@ -23,7 +23,15 @@ void	draw_background(t_cub *cub)
 
 int	render(t_cub *cub)
 {
+	int	x;
+
 	draw_background(cub);
+	x = 0;
+	while (x < WIDTH)
+	{
+		raycasting(cub, x);
+		x++;
+	};
 	mlx_put_image_to_window(cub->mlx_connection, cub->mlx_window, cub->img.img_ptr, 0, 0); //exibe a imagem na tela
 	return (0);
 }
