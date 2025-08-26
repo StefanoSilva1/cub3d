@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   valid_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdavi-al <sdavi-al@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/20 15:31:01 by sdavi-al          #+#    #+#             */
-/*   Updated: 2025/08/20 15:42:19 by sdavi-al         ###   ########.fr       */
+/*   Created: 2025/08/20 12:03:34 by sdavi-al          #+#    #+#             */
+/*   Updated: 2025/08/20 13:27:05 by sdavi-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int c, char **v)
-{
-	t_cub	cub;
+int	valid_format(char *str)
 
-	if (c != 2 || ft_strncmp(v[1], "init", 4) != 0)
-	{
-		printf("pode nn man! :(\n");
-		exit(EXIT_FAILURE);
-	}
-	init_data(&cub);
-	cub_init(&cub);
-	mlx_loop_hook(cub.mlx_connection, render, &cub); //chama a funcao e fica re-desenhando as iteracoes
-	mlx_loop(cub.mlx_connection); //inicia a renderizacao
+{
+	int	len;
+
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	if (len > 4 && str[len - 4] == '.' && str[len - 3] == 'c' \
+	&& str[len - 2] == 'u' && str[len - 1] == 'b')
+		return (1);
 	return (0);
 }
