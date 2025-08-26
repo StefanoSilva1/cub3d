@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	free_hard_map(char **map)
+/*void	free_hard_map(char **map)
 {
 	int	i;
 
@@ -12,7 +12,7 @@ void	free_hard_map(char **map)
 	}
 	free(map);
 	map = NULL;
-}
+}*/
 
 char	**create_hard_map(void)
 {

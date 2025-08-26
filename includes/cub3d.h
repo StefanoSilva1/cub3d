@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sdavi-al <sdavi-al@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/20 11:12:14 by sdavi-al          #+#    #+#             */
+/*   Updated: 2025/08/20 13:58:11 by sdavi-al         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -95,6 +107,22 @@ typedef struct s_cub
 	char			**map;
 }				t_cub;
 
+/*typedef struct s_cube
+{
+	char	*no_path;
+	char	*so_path;
+	char	*we_path;
+	char	*ea_path;
+	int		floor_rgb;
+	int		ceiling_rgb;
+	char	**map;
+	int		map_width;
+
+	void	*mlx_connection;
+	void	*mlx_window;
+	t_img	img;
+}				t_cube;*/
+
 void	cub_init(t_cub *cub);
 void	init_data(t_cub *cub);
 int		close_handler(t_cub *cub);
@@ -105,12 +133,11 @@ int		key_handler(int keysym, t_cub *cub);
 void	put_pxl_in_img(t_img *img, int x, int y, int color);
 
 char	**create_hard_map(void);
-void	free_hard_map(char **map);
+//void	free_hard_map(char **map);
 
 int		create_rgb(int t, int r, int g, int b);
 void	draw_background(t_cub *cub);
 int		render(t_cub *cub);
-void	free_map(char **map);
 int		valid_format(char *str);
 
 void	init_player(t_cub *cub);
@@ -118,4 +145,7 @@ void	init_player(t_cub *cub);
 void	raycasting(t_cub *cub, int x);
 
 void	draw_wall(t_cub *cub, int horizontal_slice, t_ray *ray_result);
+void	free_map(char **map);
+int		valid_format(char *str);
+
 #endif

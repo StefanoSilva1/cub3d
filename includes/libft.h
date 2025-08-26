@@ -13,5 +13,6 @@ char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *s);
 void	ft_bzero(void *s, size_t n);
 char	*ft_strchr(const char *s, int c);
+size_t	ft_strlen(const char *str);
 
 #endif
