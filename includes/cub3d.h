@@ -52,8 +52,8 @@ typedef struct s_player
 {
 	double	dir_y;
 	double	dir_x;
-	double	plane_y;
-	double	plane_x;
+	double	cam_plane_y;
+	double	cam_plane_x;
 	double	pos_y;
 	double	pos_x;
 }				t_player;
