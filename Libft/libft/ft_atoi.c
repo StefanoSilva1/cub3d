@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdavi-al <sdavi-al@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/28 13:42:54 by sdavi-al          #+#    #+#             */
-/*   Updated: 2025/08/28 13:42:55 by sdavi-al         ###   ########.fr       */
+/*   Created: 2024/10/15 11:19:02 by sdavi-al          #+#    #+#             */
+/*   Updated: 2024/10/28 12:14:50 by sdavi-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-
-#include "cub3d.h"
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_atoi(const char *str)
 {
-	size_t	index;
+	int	result;
+	int	sign;
 
-	index = 0;
-	while (s1[index] != '\0' && s2[index] != '\0' && index < n)
+	result = 0;
+	sign = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-' || *str == '+')
 	{
-		if (s1[index] != s2[index])
-			return ((unsigned char)s1[index] - (unsigned char)s2[index]);
-		index++;
+		if (*str == '-')
+			sign *= -1;
+		str++;
 	}
-	if (index < n)
-		return ((unsigned char)s1[index] - (unsigned char)s2[index]);
-	return (0);
+	while (*str >= '0' && *str <= '9')
+	{
+		result = result * 10 + (*str - '0');
+		str++;
+	}
+	return (sign * result);
 }

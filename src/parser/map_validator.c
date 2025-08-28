@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   map_validator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdavi-al <sdavi-al@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/28 13:42:54 by sdavi-al          #+#    #+#             */
-/*   Updated: 2025/08/28 13:42:55 by sdavi-al         ###   ########.fr       */
+/*   Created: 2025/08/27 15:33:17 by sdavi-al          #+#    #+#             */
+/*   Updated: 2025/08/28 20:47:48 by sdavi-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "cub3d.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	is_map_closed(t_cub *cub)
 {
-	size_t	index;
+	char	**map_copy;
+	int		is_closed;
 
-	index = 0;
-	while (s1[index] != '\0' && s2[index] != '\0' && index < n)
-	{
-		if (s1[index] != s2[index])
-			return ((unsigned char)s1[index] - (unsigned char)s2[index]);
-		index++;
-	}
-	if (index < n)
-		return ((unsigned char)s1[index] - (unsigned char)s2[index]);
-	return (0);
+	cub->map_set.map_width = get_map_width(cub->map);
+	player_coordinates(cub->map, cub);
+
+	map_copy = duplicate_map(cub->map);
+	if (!map_copy)
+		error_handler(cub, "Error: Malloc failed for map copy\n");
+	is_closed = flood_fill(map_copy, cub, cub->map_set.y, cub->map_set.x);
+	free_array(map_copy);
+	return (is_closed);
 }

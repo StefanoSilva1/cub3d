@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdavi-al <sdavi-al@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/28 13:42:54 by sdavi-al          #+#    #+#             */
-/*   Updated: 2025/08/28 13:42:55 by sdavi-al         ###   ########.fr       */
+/*   Created: 2024/10/16 10:52:56 by sdavi-al          #+#    #+#             */
+/*   Updated: 2024/10/25 20:12:27 by sdavi-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-
-#include "cub3d.h"
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	index;
+	size_t	i;
 
-	index = 0;
-	while (s1[index] != '\0' && s2[index] != '\0' && index < n)
-	{
-		if (s1[index] != s2[index])
-			return ((unsigned char)s1[index] - (unsigned char)s2[index]);
-		index++;
-	}
-	if (index < n)
-		return ((unsigned char)s1[index] - (unsigned char)s2[index]);
-	return (0);
+	if (s1 == NULL || set == NULL)
+		return (NULL);
+	while (ft_strchr(set, *s1) && *s1)
+		s1++;
+	i = ft_strlen(s1);
+	while (ft_strchr(set, s1[i - 1]) && i)
+		i--;
+	return (ft_substr(s1, 0, i));
 }

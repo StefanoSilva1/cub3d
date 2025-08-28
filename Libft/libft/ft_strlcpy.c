@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdavi-al <sdavi-al@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/28 13:42:54 by sdavi-al          #+#    #+#             */
-/*   Updated: 2025/08/28 13:42:55 by sdavi-al         ###   ########.fr       */
+/*   Created: 2024/10/15 11:43:15 by sdavi-al          #+#    #+#             */
+/*   Updated: 2024/10/31 12:51:40 by sdavi-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-
-#include "cub3d.h"
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	size_t	index;
+	size_t	i;
 
-	index = 0;
-	while (s1[index] != '\0' && s2[index] != '\0' && index < n)
+	if (size == 0)
+		return (ft_strlen(src));
+	i = 0;
+	while (src[i] && i < size - 1)
 	{
-		if (s1[index] != s2[index])
-			return ((unsigned char)s1[index] - (unsigned char)s2[index]);
-		index++;
+		dest[i] = src[i];
+		i++;
 	}
-	if (index < n)
-		return ((unsigned char)s1[index] - (unsigned char)s2[index]);
-	return (0);
+	dest[i] = '\0';
+	return (ft_strlen(src));
 }

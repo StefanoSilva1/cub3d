@@ -6,25 +6,25 @@
 /*   By: sdavi-al <sdavi-al@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:51:36 by sdavi-al          #+#    #+#             */
-/*   Updated: 2025/08/20 15:30:54 by sdavi-al         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:30:07 by sdavi-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_map(char **map)
+void	free_array(char **array)
 {
 	int	i;
 
-	if (!map)
+	if (!array)
 		return ;
 	i = 0;
-	while (map[i])
+	while (array[i])
 	{
-		free(map[i]);
+		free(array[i]);
 		i++;
 	}
-	free(map);
+	free(array);
 }
 
 void	cleanup(t_cub *cub)
@@ -39,7 +39,7 @@ void	cleanup(t_cub *cub)
 		free(cub->mlx_connection);
 	}
 	if (cub->map)
-		free_map(cub->map);
+		free_array(cub->map);
 }
 
 int	error_handler(t_cub *cub, char *error_message)
