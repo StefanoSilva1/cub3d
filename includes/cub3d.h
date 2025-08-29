@@ -6,7 +6,7 @@
 /*   By: sdavi-al <sdavi-al@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:12:14 by sdavi-al          #+#    #+#             */
-/*   Updated: 2025/08/28 20:48:24 by sdavi-al         ###   ########.fr       */
+/*   Updated: 2025/08/29 11:27:55 by sdavi-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,10 @@ typedef struct s_cub
 	t_sprite_img	sprite;
 	t_player		player;
 	char			**map;
+	t_img			north_texture;
+	t_img			south_texture;
+	t_img			west_texture;
+	t_img			east_texture;
 }				t_cub;
 
 /*typedef struct s_cube
